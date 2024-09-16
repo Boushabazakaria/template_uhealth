@@ -1,0 +1,316 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}App{% endblock %}
+
+{% block stylesheets %}
+            {{ parent() }}
+            {# {{ encore_entry_link_tags('siteStyle') }} #}
+        {% endblock %}
+
+{% block javascripts %}
+            {{ parent() }}
+            {# {{ encore_entry_script_tags('setting_site') }} #}
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container">
+
+      <div class="row">
+        <div class="col-md-6">
+            <div class="d-flex justify-content-start align-items-center">
+                <div class="form-check pr-4">
+                    <input class="form-check-input admission_daily" type="radio" value="now" name="flexRadioDefault" id="flexRadioDefault1" >
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Aujourd'hui
+                    </label>
+                </div>
+                <div class="form-check pr-4">
+                    <input class="form-check-input admission_daily" value="yesterday" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Hier
+                    </label>
+                </div>
+                <div class="form-check pr-4">
+                    <input class="form-check-input admission_daily" value="all" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
+                    <label class="form-check-label" for="flexRadioDefault3">
+                        Tous
+                    </label>
+                </div>
+                <select class="form-control shadow-none " aria-label="Default select example" id="type_admission" name="type_admission" >
+                    <option value="" selected >Type Admission</option>
+                    {# {% for typeAdmission in typeAdmissions %} 
+                        <option value="{{typeAdmission.id}}" >{{typeAdmission.description}}</option>
+                    {% endfor %}                                       #}
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end align-items-center ml-auto">
+
+            {# {% set current_route = app.request.get('_route') %}
+
+            {% for action in actions %}
+                {% if action.horizontal and action.principal %}
+                    <button type="button" class="{{action.className}}" data-toggle="modal" data-target="#{{action.idName}}"><i class="{{action.icon}}"></i></button>
+                {% endif %}
+                
+            {% endfor %} #}
+
+            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#add_admission"><i class="fas fa-plus"></i></button>
+
+
+            <div class="dropdown ml-2">
+                <i class="menuActions menu_options_dots fa-solid fa-ellipsis-vertical" id="Actions"></i>
+                <div class="dropdown-menu dropdown-content divMenu" id="divMenuActions">
+                    {# {% for action in actions %}
+                        {% if action.horizontal and not action.principal %}
+                            <button class="dropdown-item {{action.className}}" data-toggle="modal" data-target="#{{action.idName}}"><i class="{{action.icon}}"></i> {{action.nom}}</button>
+                        {% endif %}
+
+                    {% endfor %} #}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="mt-2">
+        <table id="admission_table" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>CODE</th>
+                    <th>IPP</th>
+                    <th>PATIENT</th>
+                    <th>TYPE ADMISSION</th>
+                    <th>SERVICE</th>
+                    <th>MEDECIN</th>
+                    <th>DATE</th>
+                    <th>STATUS</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody id="admission_body">
+                
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal Add Admission -->
+
+    <div class="modal right fade" id="add_admission"  role="dialog" aria-labelledby="add_admission" aria-hidden="true">
+        <div class="modal-dialog " style="width:50%" role="document">
+
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-uppercase" >AJOUTER ADMISSION</h5>
+                <button type="button" class="close" data-dismiss="modal" id="close_add_admission" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form id="form_add_admission">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="">Données du patient :</h5>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="#" class="rdv_historique_patient">Historique patient</a>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <div class="row no-gutters mb-2">
+                        <div class="col-md-6 d-flex pr-2">
+                            <select class="form-control shadow-none" aria-label="Default select example" id="patientInfo" name="patientInfo" >
+                            </select>
+                            <button type="button" class="btn-sm btn btn-primary ml-1 add-patient" data-toggle="modal"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" disabled type="text" name="convention" id="convention" value="" placeholder="ORGANISME">
+                        </div>
+                        {# <div class="col-md-4">
+                            <button type="button" class="btn-sm btn btn-primary add-patient" data-toggle="modal"><i class="fa-solid fa-plus"></i></button>
+                        </div> #}
+                    </div>
+
+                    <div class="row no-gutters mb-2">
+                        <div class="col-md-6 pr-2">
+                            <input class="form-control" disabled type="text" name="phone" id="phone" value="" placeholder="TELEPHONE">
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" disabled type="text" name="cin" id="cin" value="" placeholder="CIN">
+                        </div>
+
+                    </div>
+                    <div class="row no-gutters mb-2">
+                        <div class="col-md-6 pr-2">
+                            <input class="form-control" disabled type="date" name="dateNaissance" id="dateNaissance" value="" placeholder="DATE NAISSANCE">
+                        </div>
+
+                    </div>
+                </div>
+
+                <h5 class="">Admission :</h5>
+                <div class="row no-gutters mb-2">
+                    <div class="col-md-6 pr-2">
+                        <label for="type_admission_">Type admission:</label>
+                        <select class="form-control shadow-none " aria-label="Default select example" id="type_admission_" name="type_admission" >
+                            <option value="" selected >Type Admission</option>
+                            {# {% for typeAdmission in typeAdmissions %} 
+                                <option value="{{typeAdmission.id}}" >{{typeAdmission.description}}</option>
+                            {% endfor %}                                       #}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="date_admission">Date admission:</label>
+                        <input class="form-control current-date" type="date" name="date_admission" id="date_admission">
+                    </div>
+                </div>
+                <div class="row no-gutters mb-2">
+                    <div class="col-md-6 pr-2">
+                        <select class="form-control shadow-none" aria-label="Default select example" id="medecin" name="medecin">
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="form-control shadow-none" aria-label="Default select example" id="service" name="service">
+                        <option value="" selected >SERVICE</option>
+                            {# {% for service in services %}
+                            <option value="{{service.id}}" >{{service.description}}</option>
+                            {% endfor %} #}
+                        </select>
+                    </div>
+                </div>
+                <div class="row no-gutters mb-2 urg-fields">
+                    <div class="col-md-6 pr-2">
+                        <select class="form-control shadow-none " aria-label="Default select example" id="box" name="box" >
+                            <option value="" selected >Box</option>
+                            {# {% for box in boxes %} 
+                                <option value="{{box.id}}" >{{box.description}}</option>
+                            {% endfor %}                                       #}
+                        </select>
+                    </div>
+                    <div class="col-md-6">                                   
+                        <select class="form-control shadow-none" aria-label="Default select example" id="type_urgence" name="type_urgence" >
+                            <option value="" selected >TYPE URGENCE</option>
+                            {# {% for type_urgence in type_urgences %}
+                            <option value="{{type_urgence.id}}">{{type_urgence.description}}</option>
+                            {% endfor %} #}
+                        </select>
+                    </div>
+                </div>
+                <div class="row no-gutters mb-2 urg-fields">
+                    <div class="col-md-6 pr-2">
+                        <div class="w-100 mr-2">
+                            <select class="form-control shadow-none" aria-label="Default select example" id="etat_entree" name="etat_entree" >
+                            <option value="" selected >ETAT D'ENTREE</option>
+                            {# {% for etat_entree in etat_entrees %}
+                            <option value="{{etat_entree.id}}">{{etat_entree.description}}</option>
+                            {% endfor %} #}
+                            
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="w-100">
+                            <select class="form-control shadow-none" aria-label="Default select example" id="type_provenance" name="type_provenance" >
+                            <option value="" selected >TYPE DE PROVENANCE</option>
+                            {# {% for type_provenance in type_provenances %}
+                            <option value="{{type_provenance.id}}">{{type_provenance.description}}</option>
+                            {% endfor %} #}
+                            
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row no-gutters mb-2 hosp-fields">
+                    <div class="col-md-6 pr-2 input-group">
+                        <input type="text" id="lit" name="lit" class="form-control" value="" placeholder="CHOISIR un lit" disabled>
+                        <input type="hidden" id="lit_id" name="lit_id" value="">
+                        <div class="input-group-append">
+                        <button class="btn-sm btn btn-outline-primary search_lit" id="" type="button" style="font-size: 0.45rem !important;">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="form-control shadow-none" aria-label="Default select example" id="type_hospitalisation" name="type_hospitalisation" >
+                        <option value="" selected >TYPE D'HOSPITALISATION</option>
+                        {# {% for typeHospitalisation in typeHospitalisations %}
+                        <option value="{{typeHospitalisation.id}}">{{typeHospitalisation.description}}</option>
+                        {% endfor %} #}
+                        
+                        </select>
+                    </div>
+                </div>
+                <div class="row no-gutters mb-2 hosp-fields">
+                    <div class="col-md-6 pr-2">
+                        <select class="form-control shadow-none" aria-label="Default select example" id="motif" name="motif" >
+                        <option value="" selected >MOTIF D'HOSPITALISATION</option>
+                        {# {% for motifHospitalisation in motifHospitalisations %}
+                        <option value="{{motifHospitalisation.id}}">{{motifHospitalisation.description}}</option>
+                        {% endfor %} #}
+                        
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="form-control shadow-none" aria-label="Default select example" id="origine" name="origine" >
+                        <option value="" selected >ORIGINE D'HOSPITALISATION</option>
+                        {# {% for origine in origines %}
+                        <option value="{{origine.id}}">{{origine.nom}}</option>
+                        {% endfor %} #}
+                        
+                        </select>
+                    </div>
+                </div>
+                <div class="row no-gutters mb-2 hosp-fields">
+                    <div class="col-md-6 pr-2">
+                        <select class="form-control shadow-none" aria-label="Default select example" id="isolement" name="isolement" >
+                        <option value="" selected >ISOLEMENT</option>
+                        {# {% for typeIsolement in typeIsolements %}
+                        <option value="{{typeIsolement.id}}">{{typeIsolement.description}}</option>
+                        {% endfor %} #}
+                        
+                        </select>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-start align-items-center">
+                        <input class="form-check" type="checkbox" name="infectieux" id="infectieux"/> 
+                        <label for="infectieux" class="mb-0" >&nbsp;INFECTIEUX</label>
+                    </div>
+                </div>
+
+                <div class="row no-gutters mb-2">
+                    <div class="col-md-6 pr-2">
+                            <select class="form-control shadow-none" aria-label="Default select example" id="diagnostique" name="diagnostique" >
+                                <option value="" selected >DIAGNOSTIQUE</option>                                        
+                            </select>
+                    </div>
+                    <div class="col-md-6">
+                        <input class="form-control" type="text" name="text_diag" id="text_diag" placeholder="text diagnostique">
+                    </div>
+                </div>
+
+                <div class="row no-gutters mb-2">
+                    <div class="col-md-12">
+                        <textarea type="text" class="form-control " name="observation" id="observation" placeholder="observation" /></textarea>
+                    </div>
+                </div>
+                
+            </form>    
+            </div>
+            <div class="modal-footer m-2">
+                <button type="submit" form="form_add_admission" class="btn-sm btn btn-primary saveAddPatientWarning ladda-button" data-spinner-size="18" data-style="expand-right">
+                    <span class="ladda-label">
+                    <i class="fa-regular fa-floppy-disk"></i> Enregistrer
+                    </span>
+                </button>                
+            </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

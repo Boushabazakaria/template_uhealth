@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            <link rel="shortcut icon" type="image/png" href="{{ asset('build/images/logoHCZ2.png') }}"/>
+            {# <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"/> #}
+            {# <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css"> #}
+
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {# <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script> #}
+
+            <script>
+                window.frenchJsonUrl = '{{ asset('js/French.json') }}'
+            </script>
+        {% endblock %}
+    </head>
+    <body>
+        {# <div id="loader">
+        </div> #}
+
+        <div class="loader-bg">
+            <div class="loader" id="loader"></div>
+        </div>
+        {% set current_path = app.request.get('_route') %}
+        {# {{ dump(current_path) }} #}
+        {% if current_path != 'app_login'  %}
+            {% include "plugins/side_bar.html.twig" %}
+        {% endif %}
+        {% block body %}
+
+            
+        {% endblock %}
+        <footer class="footer text-center ">
+        <!-- Copyright -->
+        <div class="text-center p-2" >
+            © {{ 'now' | date('Y') }} Copyright - MTSI FCZ
+        </div>
+        <!-- Copyright -->
+        </footer>
+    </body>
+</html>

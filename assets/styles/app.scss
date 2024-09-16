@@ -1,0 +1,731 @@
+$primary:#508884;
+
+@import "~bootstrap";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+@import "~toastr/toastr.scss";
+@import "sidebar";
+@import "datatables";
+@import "pace";
+@import "../plugins/toastr/build/toastr.css";
+
+
+
+* {
+  font-family: "Roboto Condensed", sans-serif;
+  // border-radius: 0 !important;
+  text-transform: uppercase !important;
+  /* font-size: 10.5px !important; */
+}
+
+body {
+  // background-color: rgb(253, 253, 253)  !important;
+  overflow-x: hidden;
+}
+
+.dataTables_wrapper {
+  font-size: 12px !important;
+}
+
+.pace-progress {
+  background-color: #508884!important;
+  height: 3px !important;
+}
+
+input:focus {
+  border-color:#508884 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+th {
+  background-color: #508884 !important;
+  color: #fff !important;
+  font-weight: normal !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  padding: 1px 5px !important;
+}
+
+.dataTables_wrapper .dataTables_length select {
+  padding: 1px 2px !important;
+}
+
+.swal2-popup {
+  font-size: 0.7rem !important;
+}
+
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.swal2-icon.swal2-warning {
+  border-radius: 50% !important;
+}
+
+.swal2-icon.swal2-info {
+  border-radius: 50% !important;
+}
+
+.swal2-title {
+  font-size: 1rem !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+th,
+td {
+  padding: 2px 8px !important;
+  border-right: 1px solid #d7d7d785 !important;
+  border-bottom: none !important;
+  text-align: center !important;
+  font-size: 12px !important;
+  text-transform: uppercase !important;
+  vertical-align: middle !important;
+}
+
+// .divMenu {
+//   /* display: none; */
+//   position: absolute;
+//   background-color: #f9f9f9 !important;
+//   width: 100px;
+//   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.548);
+//   z-index: 1;
+//   // border-radius: 5px !important;
+//   // margin-left:-15px !important;
+//   // border-bottom:1px solid #06283db3 !important;
+//   // border-left:1px solid #06283db3 !important;
+//   // border-right:1px solid #06283db3 !important;
+//   // margin-left: -8px !important;
+// }
+
+.menuIcon {
+  margin: 3px !important;
+}
+
+
+// .divMenu button {
+//   float: left;
+//   color: rgb(66, 66, 66);
+//   padding: 5px 8px !important;
+//   text-decoration: none;
+//   font-size: 12px;
+//   display: block;
+//   text-align: center;
+//   border: none !important;
+//   width: 100px;
+//   background-color: transparent !important;
+//   transition: 0.3s;
+
+//   // border-top:1px solid #06283db3 !important;
+//   // text-align: left;
+// }
+
+// .divMenu button:hover {
+//   background-color: #508884!important;
+//   color: white;
+// }
+
+table {
+  /* border-top: 1px solid rgba(0, 0, 0, 0.158) !important; */
+  border-left: 1px solid #d7d7d785 !important;
+  border-bottom: 1px solid #d7d7d785 !important;
+  // background-color:#fff !important;
+  width: 100% !important;
+}
+
+.paginate_button {
+  padding: 0px 5px !important;
+}
+
+table.dataTable tbody tr.selected > * {
+  box-shadow: none !important;
+  background-color:rgb(80 136 132 / 24%);
+  color: inherit !important;;
+}
+
+.selected{
+
+  box-shadow: none !important;
+  background-color: rgba(1, 151, 251, 0.168627451);
+  // color: inherit !important;;
+
+}
+
+// .tdStatus{
+//   text-align: justify !important;
+
+// }
+
+// .actifIcon{
+//   color:rgb(31, 192, 31);
+//   text-transform: uppercase;
+// }
+
+// .inactifIcon{
+//   color:rgb(207, 36, 36);
+//   text-transform: uppercase;
+// }
+
+.colorRow {
+  background-color: #50888454 !important;
+  // color: white !important;
+}
+
+.btn {
+  // padding:3px 8px !important;
+  font-size: 10px !important;
+}
+
+.container {
+  font-size: 12px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 100% !important;
+  min-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-bottom: 3rem !important;
+}
+
+h5 {
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+
+.menuActions {
+  cursor: pointer;
+}
+
+label {
+  font-size: 11px !important;
+  // margin-bottom: 0px !important;
+}
+
+.navBarIcons {
+  color: rgb(85, 85, 85) !important;
+}
+
+.moduleHeader{
+  font-size: 11px !important;
+  font-weight: bold !important;
+}
+
+.form-check-input {
+  margin-top: 2px !important;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid lightgray !important;
+  // border-radius: 0 !important;
+  font-size: 11px !important;
+  // text-transform: uppercase !important;
+}
+
+input:not(.form-check-input),
+select{
+  height: 25px !important;
+}
+
+.list-group-item{
+    border-radius: 0 !important;
+}
+
+.listActes {
+  display: none;
+}
+
+
+
+.select2-container {
+  width: 100% !important;
+  //  margin:.5rem;
+  height: 25px !important;
+  font-size: 11px !important;
+  // border: 1px solid #ccc !important;
+  margin-right: 0 !important;
+  margin-top: 0 !important;
+  
+}
+
+.select2-selection__rendered{
+  
+  line-height: 25px !important;
+}
+
+.select2-selection {
+  height: 25px !important;
+  // padding: 0.1rem 0.3rem !important;
+  color: lightgray !important;
+}
+
+.select2-results__options {
+  font-size: 11px !important;
+}
+
+// .select2-dropdown {
+//   margin:-.5rem;
+
+// }
+
+.action {
+  padding: 0 !important;
+}
+
+.ladda-button[data-style="expand-right"][data-loading] {
+  padding-right: 25px !important;
+}
+
+.ladda-button .ladda-spinner {
+  width: 18px !important;
+}
+
+
+.generer_borderau,
+.generer_bordereau_honoraire,
+.generer_bordereau_organisme,
+.medecin_personel {
+  display: none;
+}
+
+.facture-section {
+  display: none;
+}
+
+.traitement_di,
+.montantActSize {
+  font-size: 12px !important;
+}
+
+.descriptionActSize {
+  margin-top : 1px !important;
+  font-size: 11px !important;
+}
+
+.badge-gray {
+  background-color: #d47f88;
+  cursor: not-allowed;
+}
+
+.search_lit {
+  font-size: 0.5rem !important;
+}
+
+.label-width {
+  width: 180px !important;
+  margin-top:3px !important;
+}
+
+
+th input,
+td input {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+// .col-xl, .col-xl-auto, .col-xl-12, .col-xl-11, .col-xl-10, .col-xl-9, .col-xl-8, .col-xl-7, .col-xl-6, .col-xl-5, .col-xl-4, .col-xl-3, .col-xl-2, .col-xl-1, .col-lg, .col-lg-auto, .col-lg-12, .col-lg-11, .col-lg-10, .col-lg-9, .col-lg-8, .col-lg-7, .col-lg-6, .col-lg-5, .col-lg-4, .col-lg-3, .col-lg-2, .col-lg-1, .col-md, .col-md-auto, .col-md-12, .col-md-11, .col-md-10, .col-md-9, .col-md-8, .col-md-7, .col-md-6, .col-md-5, .col-md-4, .col-md-3, .col-md-2, .col-md-1, .col-sm, .col-sm-auto, .col-sm-12, .col-sm-11, .col-sm-10, .col-sm-9, .col-sm-8, .col-sm-7, .col-sm-6, .col-sm-5, .col-sm-4, .col-sm-3, .col-sm-2, .col-sm-1, .col, .col-auto, .col-12, .col-11, .col-10, .col-9, .col-8, .col-7, .col-6, .col-5, .col-4, .col-3, .col-2, .col-1 {
+//   padding-right: 0px !important;
+//   padding-left: 0px !important;
+// }
+
+
+
+div.dataTables_processing > div:last-child > div{
+  display: none !important;
+}
+
+
+@media (min-width: 1200px) {
+  .container-xl,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container {
+    max-width: 100% !important;
+  }
+}
+
+/*******************************
+* MODAL AS LEFT/RIGHT SIDEBAR
+* Add "left" or "right" in modal parent div, after class="modal".
+* Get free snippets on bootpen.com
+*******************************/
+.modal.left .modal-dialog,
+.modal.right .modal-dialog {
+  position: fixed;
+  margin: auto;
+  // width: 100%;
+  height: 100%;
+  -webkit-transform: translate3d(0%, 0, 0);
+  -ms-transform: translate3d(0%, 0, 0);
+  -o-transform: translate3d(0%, 0, 0);
+  transform: translate3d(0%, 0, 0);
+}
+
+.modal.left .modal-content,
+.modal.right .modal-content {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.modal.left .modal-body,
+.modal.right .modal-body {
+  padding: 15px 15px 0px;
+}
+
+.modal-dialog {
+  max-width: none !important;
+}
+
+/*Left*/
+.modal.left.fade .modal-dialog {
+  left: -320px;
+  -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+  transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+
+.modal.left.fade.show .modal-dialog {
+  left: 0;
+  box-shadow: -4px 1px 10px black;
+}
+
+/*Right*/
+.modal.right.fade .modal-dialog {
+  right: -320px;
+  -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+  transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+
+.modal.right.fade.show .modal-dialog {
+  right: 0;
+  box-shadow: 4px 1px 10px black;
+}
+
+/* ----- MODAL STYLE ----- */
+// .modal-content {
+//   border-radius: 0;
+//   border: none;
+// }
+
+.modal-header {
+  border-bottom-color: #eeeeee;
+  background-color: #fafafa;
+  height: 50px !important;
+}
+
+// .modal-backdrop {
+//   background: none !important;
+// }
+
+// .select2Div{
+//   width: 100%;
+//     margin: -8px;
+//     // margin-right: 15px;
+// }
+
+// .canceled {
+//   color: #a91b0d !important;
+// }
+
+// .validated {
+//   color: #01796f !important;
+// }
+// .sortie_urg,
+// .sortie_ad {
+//   color: #3944bc !important;
+// }
+
+.tr_select {
+  // cursor: pointer;
+  // background-color: aliceblue;
+  cursor: pointer;
+}
+.tr_select.active {
+  background-color: #50888454 !important;
+}
+
+.tr_select:hover {
+  background-color: #50888454 !important;
+  // cursor: pointer;
+}
+
+// #loader {
+//   z-index: 999999999;
+//   display: none;
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background: url(../images/loader.gif) 50% 50% no-repeat #cccccc4a;
+// }
+
+.loader-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f7f6fb75;
+  // display: flex;
+  justify-content: center;
+  align-items: center; 
+  z-index: 99999;
+  display: none;
+}
+
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: 
+    radial-gradient(farthest-side, #508884 94%, #0000) top/8px 8px no-repeat,
+    conic-gradient(#0000 30%, #508884);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  animation: l13 1s infinite linear;
+  position: absolute;
+  top:50%;
+  left: 50%;
+}
+
+@keyframes l13 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.sySweetStyle {
+  margin: 0px 5px 0px 0px;
+}
+
+.kanban-board {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: sans-serif;
+}
+
+.kanban-heading-text {
+  font-size: 1.8rem;
+  background-color: tomato;
+  padding: 0.8rem 1.7rem;
+  border-radius: 0.5rem;
+  margin: 1rem;
+}
+
+.kanban-block,
+.create-new-task-block {
+  padding: 0.6rem;
+  width: 49%;
+  min-width: 14rem;
+  min-height: 4.5rem;
+  border-radius: 0.3rem;
+}
+
+#todo {
+  background-color: #eae6e7;
+}
+
+#inprogress {
+  background-color: #eae6e7;
+  /* display: none; */
+}
+
+#done {
+  background-color: #018b01;
+  /* display: none; */
+}
+
+.task {
+  background-color: white;
+  margin: 0.2rem 0rem 0.3rem 0rem;
+  border: 0.1rem solid black;
+  border-radius: 0.2rem;
+  padding: 0.5rem 0.2rem 0.5rem 2rem;
+}
+.vertical-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: #e7e5e5;
+  margin-left: -1px;
+}
+
+.list-group-item {
+  padding: 0.5rem 1.85rem !important;
+}
+
+.acte-transfer-desc {
+  margin-bottom: 0 !important;
+}
+
+.card-di {
+  box-shadow: none !important;
+  border: 1px solid #ccc !important;
+}
+
+.selected_bed {
+  background-color: #35b9cd !important;
+  color: white;
+}
+
+ .selected_panier {
+  background-color: #33a1b3 !important;
+}
+
+.selected_encaissement {
+  background-color: #33a1b3 !important;
+  color: white;
+}
+
+.fa-circle-xmark{
+ color: #D24545 !important;
+}
+
+.fa-circle-check{
+  color: #0D9276 !important;
+}
+
+.ui-widget.ui-widget-content {
+  width: 420px !important;
+}
+
+
+.list-group-item-det{
+  padding: .2rem 1.85rem .2rem 3rem !important;
+  background-color: seashell !important;
+}
+
+.panierDets{
+  height: 400px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+span.select2-selection.select2-selection--single {
+  outline: none;
+}
+
+.list-quotas-item{
+  padding: 0 0px 0 15px !important;
+    border-radius: 5px !important;
+    width: 100% !important;
+}
+
+.add-patient{
+  padding: 3px 7px !important
+}
+
+.add-facture{
+  padding: 0.175rem 0.65rem !important;
+  vertical-align: bottom !important;
+  margin-top: 25px !important;
+}
+
+// .info-facture{
+//   margin-left: 180px !important;
+//   margin-bottom: 20px !important;
+// }
+
+.dropdown-menu {
+  font-size: 12px !important;
+  right: 0 !important;
+  left: unset !important;
+  min-width: 8rem !important;
+  // padding: 0;
+}
+
+i {
+  min-width: 15px !important;
+}
+
+.fa-solid {
+  font-size: 12px !important;
+}
+
+.menu_options_dots{
+  color: #508884 !important;
+}
+
+input[type='radio'] {
+  accent-color: #508884;
+}
+
+input[type='checkbox'] {
+  accent-color: #508884;
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+  background-color: #508884 !important;
+}
+
+.modal-backdrop + .modal-backdrop {
+  display: none;
+}
+
+h4{
+  font-size: 20px !important;
+}
+
+table.dataTable td,th {
+  white-space: nowrap;
+}
+
+table td,th {
+  white-space: nowrap !important;
+}
+
+.text-right{
+  text-align: right !important;
+}
+
+.tab-links a {
+  padding:9px 8px 6px;
+  display:inline-block;
+  background: #c7d8e8;
+  border: 2px solid #c7d8e8;
+  font-size: 12px;
+  color:#00447c;
+  transition:all linear 0.15s;
+  text-decoration:none;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  font-weight: bold;
+
+}
+
+.tab-links li.active a {
+  background: #3e7294;
+  border: 2px solid #3e7294;
+  color: #fff;
+  transition: 0.5ms linear;
+  
+}
+
+.no-rounded-left {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.no-rounded-right {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+

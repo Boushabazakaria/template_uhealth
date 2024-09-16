@@ -1,0 +1,123 @@
+
+// body{
+//   background-image: url(../images/bg_login.jpg) !important;
+//   background-repeat: no-repeat !important;
+//   background-size: cover !important;
+  
+// }
+
+.loginDiv{
+  // background-color: #efefef;
+    background-image: url(../images/5570863.jpg) !important;
+    background-repeat: no-repeat !important;
+  background-size: cover !important;
+ 
+
+  
+}
+
+
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  
+  
+}
+#logoHcz{
+  width:60px;
+}
+
+h1{
+  font-size: 2.2rem !important;
+  font-weight:bold ;
+  color: dimgrey;
+}
+
+.loginDesc{
+  font-size:14px;
+  color:rgb(82, 82, 82);
+  text-align: justify;
+  padding-right: 20px;
+}
+
+.loginCard{
+  border: none !important;
+}
+
+.card{
+  
+  // border: none !important;
+  box-shadow: 0.5px 0.5px 30px #d4d4d4;
+  border-radius:3px !important;
+  background-color:#ffffff;
+}
+
+input {
+  border:1px solid lightgray !important;
+  // border-radius: 0 !important;
+  font-size: 12px !important;
+  text-transform: uppercase !important;
+}
+
+// .btn-primary{
+//   border-color: #508884!important;
+//   background-color: #508884!important;
+//   // border-radius: 0 !important;
+//   // text-transform: uppercase !important;
+// }
+.btn {
+  font-size: 0.75rem !important;
+
+}
+.sih{
+  color: #508884!important;
+  text-transform: uppercase !important;
+  font-size: 2rem !important;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--white-color);
+  font-size: 12px;
+  color: rgb(85, 85, 85) !important;
+  text-align: center;
+  text-transform: uppercase !important;
+  height:33px !important;
+}
+
+.alert-danger{
+  font-size: 12px !important;
+}
+
+.input-icons i {
+  position: absolute;
+  padding:7px;
+}
+
+.input-icons {
+  width: 100%;
+  /* margin-bottom: 10px; */
+}
+
+/* .icon {
+  padding: 10px;
+  min-width: 40px;
+} */
+
+.input-field {
+  width: 100%;
+  padding: 0 30px;
+  /* text-align: center; */
+}
+
+.fa_icon{
+  color:gray;
+  // margin-top:2px;
+  font-size:14px;
+}

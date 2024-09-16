@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Authentification{% endblock %}
+{% block stylesheets %}
+  {{parent()}}
+  {{ encore_entry_link_tags('login') }}
+{% endblock %}
+
+
+{% block body %}
+<body class="loginDiv">
+{# <form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputUsername">Username</label>
+    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+    <label for="inputPassword">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    
+
+    <button class="btn-sm btn btn-lg btn-primary" type="submit">
+        Sign in
+    </button>
+</form> #}
+
+<!-- Section: Design Block -->
+
+
+
+<section class="container pt-3">
+  <!-- Jumbotron -->
+  <div class="px-6 py-5 px-md-5 ml-5  text-lg-start content">
+    <div class="container">
+      <div class="row gx-lg-5 align-items-center">
+        <div class="col-lg-7 mb-5 mb-lg-0 ml-4">
+          <h1 class="">U-HEALTH <br />
+            <span class="sih">Système d'information hospitalier</span>
+          </h1>
+          <p class="loginDesc">
+            Un système d'information hospitalier (SIH) est une suite 
+            d'outils informatisés qui peuvent être utilisés pour
+            gérer tous les besoins d'information d'un hôpital ou 
+            d'un autre fournisseur de soins de santé. 
+            Un SIH fournira des outils pour gérer les fonctions cliniques, 
+            financières et administratives.
+          </p>
+        </div>
+
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <div class="card loginCard">
+            <div class="card-body py-3 px-md-4">
+              <form method="post">
+                {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <div class="form-outline mb-2 text-center">
+                  <img src="{{asset('build/images/logoHCZ2.png')}}" alt="logo HCZ" id="logoHcz"/>
+                </div>
+                <div class="input-icons">
+                  <!-- Email input -->
+                  <div class="form-outline mb-2">
+                    {# <label class="form-label" for="form3Example3">Nom d'utilisateur</label> #}
+                    <i class="fa-solid fa-user fa_icon"></i>
+                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control input-field" placeholder="Nom d'utilisateur" required/>
+                  </div>
+
+                  <!-- Password input -->
+                  <div class="form-outline mb-4">
+                    {# <label class="form-label" for="form3Example4">Mot de passe</label> #}
+                    <i class="fa-solid fa-lock fa_icon"></i>
+                    <input type="password" name="password" id="inputPassword" class="form-control input-field" placeholder="Mot de passe" required/>
+                  </div>
+                </div>
+
+                <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+                >
+
+
+                <!-- Submit button -->
+                <button type="submit" class="btn-sm btn btn-primary btn-block mb-4 login_btn">
+                  S'identifier
+                </button>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+</section>
+
+</body>
+<!-- Section: Design Block -->
+
+{# 
+
+<footer class="footer text-center ">
+  <!-- Copyright -->
+  <div class="text-center p-2" >
+    © 2022 Copyright - SI FCZ -
+  </div>
+  <!-- Copyright -->
+</footer> #}
+
+</body>
+{% endblock %}
+
+

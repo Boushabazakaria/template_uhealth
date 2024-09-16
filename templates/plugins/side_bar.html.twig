@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  {# Comment this lines for get a sidebare open by default #}
+  {# <body id="body-pd" class="body-pd"> #}
+  <body id="body-pd" class="">
+
+{# <header class="header body-pd" id="header"> #}
+<header class="header" id="header">
+
+      {% set currentRoute = app.request.attributes.get('_route') %}
+      {% set currentSubModuleTitle = null %}
+      <div class="header_toggle ">
+        <div class="d-flex align-items-center">
+        {# <i class="fa-solid fa-bars fa-xmark " id="header-toggle"></i> #}
+
+          <i class="fa-solid fa-bars toggle_margin " id="header-toggle"></i>
+
+            {% for module in app.session.get('modules') %}
+              {% for subModule in module.pSousModule %}
+                {% if subModule.route == currentRoute %}
+                  <a class="navbarPath d-flex align-items-center">
+                      <span>{{ module.nom }}</span>
+                      <i style="font-size:8px !important; font-weight:bold !important;" class=" ml-2 fa-solid fa-chevron-right"></i>
+                      <span>{{ subModule.nom }}</span>
+                  </a>
+
+                  {% set currentSubModuleTitle =  subModule.nom %}
+                    
+                  {# <div class="hiddenMenue">
+                    <ul>
+                    {% for m in module.pSousModule %}
+                      <li><a class="" href="{{path(m.route)}}"><i class="fa-solid fa-pen-to-square"></i> {{m.nom}}</a></li>
+                    {% endfor %}
+                    </ul>
+                  </div> #}
+                    
+                {% endif %}
+              {% endfor %} 
+            {% endfor %}
+
+        </div>
+
+
+      </div>
+      <div class="profile mt-3">
+          <ul class="d-flex align-items-center">
+            <!-- Icon dropdown -->
+            <li class=" mr-3">
+              <a href="/app" class="d-flex align-items-center navBarIcons">
+                {# <i class="fas fa-folder"></i><span class="ml-2 small moduleHeader"> {{app.session.get('dossier').cce0}}</span> #}
+
+              </a>
+            </li>
+            <li class="mr-3">
+              {# <a href="/dossier/module/{{app.session.get('dossier').id}}" class="navBarIcons"> #}
+                {# <i class="fas fa-gear"></i>  #}
+              </a>
+            </li>
+            <li class="nav-item me-3 me-lg-0 dropdown">
+            
+              <button class="nav-link dropdown-toggle" id="navbarDropdown">
+              
+                <i class="fas fa-user"></i><span>{{app.user.username}}</span>
+              </button>
+              <div class="dropdown-menu " id="divMenu">
+                  {# <a class="dropdown-item" href="{{path('app__profile')}}"><i class="fa-solid fa-pen-to-square"></i><span>Profile</span></a> #}
+                  {# <a class="" href="#"><i class="fa-solid fa-gear"></i> Paramétres</a> #}
+                  <a class="dropdown-item" href="{{path('app_logout')}}"><i class="fa-solid fa-right-from-bracket"></i><span>Decconexion</span></a>
+
+              </div>
+            </li>
+        </ul>
+      </div>
+      
+    </header>
+    <div class="mt-4">
+      <div class="mb-2" style="padding-top:0 !important; height:3rem !important;">
+        <div class="d-flex justify-content-end align-items-center text-center mb-2 mr-2">
+          <h1 class="sum-module-title mr-auto pt-2">{{currentSubModuleTitle}}</h1>
+          {% set path = 'build/images/' %}
+          {% for module in app.session.get('modules') %}
+            {% if not module.setting and module.active %}
+            <a href="{{path(module.route)}}">
+              <div class="icon-module">
+                <img src="{{asset(path ~ module.image )}}" class="image-module" alt="{{module.abreviation}}" />
+                <h5 class="mt-1">{{module.abreviation}}</h5>
+              </div>  
+            </a>
+            {% endif %} 
+          {% endfor %}       
+        </div>
+      </div>
+    </div>
+
+    {# <div class="l-navbar show-sidebar " id="nav-bar"> #}
+    <div class="l-navbar nav_width " id="nav-bar">
+
+      <nav class="nav ">
+        <div>
+            <a href="#" class="nav_logo">
+                <img src="{{asset('build/images/parametrage/dossiers/logo_HMK.png')}}" alt="logo" id="logoHczSideBar"/>
+                <span class="nav_logo-name">U-HEALTH</span>
+            </a>
+            <div class="nav_list menuList">
+              <ul>
+                 
+                      {# {% set getModule = app.request.pathinfo|split('/')[1] %}
+                      
+                      {% for module in app.session.get('modules') %}
+                        {% if getModule == "setting" or getModule == "user" %}
+                          <li> 
+                            <a href="#" data-id="{{module.route}}"class="nav_link menuLink d-flex sidebarMenu {% if getModule == module.route %} active {% endif %}" id="{{module.id}}"><i class="{{module.icon}}"></i>
+                              <span class="nav_name">{{ module.nom }}</span>
+                              <span class="fas fa-caret-right"></span>
+                            </a>
+                            <ul class="nav_list sub-menu collapse" id="subModule{{module.id}}">
+                              {% for subModule in module.pSousModule %}
+                                {% if subModule.active %}
+                                
+                                  <li class="nav_link_sub nav_link {% if app.request.attributes.get('_route') == subModule.route %} active {% endif %}">
+                                    <a  href="{{path(subModule.route)}}" class="subMenuItems">
+                                    {{subModule.nom}}
+                                    </a>
+                                  </li>
+                                {% endif %}
+                              {% endfor %}
+                            </ul>
+                          </li>
+                        {% elseif not module.setting %}
+                          <li> 
+                            <a href="#" data-id="{{module.route}}"class="nav_link menuLink d-flex sidebarMenu {% if getModule == module.route %} active {% endif %}" id="{{module.id}}"><i class="{{module.icon}}"></i>
+                              <span class="nav_name">{{ module.nom }}</span>
+                              <span class="fas fa-caret-right"></span>
+                            </a>
+                            <ul class="nav_list sub-menu collapse" id="subModule{{module.id}}">
+                              {% for subModule in module.pSousModule %}
+                                {% if subModule.active %}
+                                
+                                  <li class="nav_link_sub nav_link {% if app.request.attributes.get('_route') == subModule.route %} active {% endif %}">
+                                    <a  href="{{path(subModule.route)}}" class="subMenuItems">
+                                    {{subModule.nom}}
+                                    </a>
+                                  </li>
+                                {% endif %}
+                              {% endfor %}
+                            </ul>
+                          </li>
+
+                        {% endif %}
+                      {% endfor %} #}
+
+              </ul>
+            </div>
+        </div>
+
+      </nav>
+    </div>
+    
+    <script>
+
+          // --------------add active class-on another-page move----------
+
+        // Get current path and find target link
+        var path = window.location.pathname;
+
+        var prefix = window.location.pathname.split('/')[1];
+
+
+
+        // Account for home page with empty path
+        if ( path == '' ) {
+            path = 'login';
+        }
+
+
+        var target = $('.sub-menu li a[href="'+path+'"]');
+        var menu = $('.menuLink').prop('data-id' , prefix);
+
+        // Add active class to target link
+        target.css("color","white");
+        {# menu.css("color","white"); #}
+
+
+      document.addEventListener("DOMContentLoaded", function (event) {
+        const showNavbar = (toggleId, navId, bodyId, headerId , toggleSideBar) => {
+          const toggle = document.getElementById(toggleId),
+            nav = document.getElementById(navId),
+            bodypd = document.getElementById(bodyId),
+            headerpd = document.getElementById(headerId);
+          
+
+          // Validate that all variables exist
+          if (toggle && nav && bodypd && headerpd) {
+            toggle.addEventListener("click", () => {
+              // show navbar
+              
+                toggle.classList.toggle("toggle_margin")
+                nav.classList.toggle("nav_width")
+              
+              nav.classList.toggle("show-sidebar");
+              // change icon
+
+              toggle.classList.toggle("fa-xmark");
+              // add padding to body
+              bodypd.classList.toggle("body-pd");
+              // add padding to header
+              headerpd.classList.toggle("body-pd");
+            });
+          }
+          
+        };
+
+        showNavbar("header-toggle", "nav-bar", "body-pd", "header");
+
+
+      });
+
+
+      $(".sidebarMenu").on("click", function(){
+
+        sidebarIsOpen = $('#nav-bar').hasClass("show-sidebar");
+
+        if(sidebarIsOpen){
+          
+            $(".menuList:not(.nav_link_sub)").find(".active").removeClass("active");
+
+            
+            $(this).toggleClass("active");
+
+            var idModule = $(this).attr("id");
+            $(".sub-menu:not(#subModule"+idModule+")").hide("3ms");
+            $("#subModule"+idModule).toggle("5ms");
+            $("#subModule"+idModule).toggleClass("showing");
+
+              $(".fa-caret-right").removeClass("rotate")
+
+              if(!$("#subModule"+idModule).hasClass("showing")){
+                  $(this).find(".fa-caret-right").addClass("rotate")
+              }
+
+
+              $(this).find(".fa-caret-right").toggleClass("rotate")
+
+              let tabValue = $(this).find("span").text();
+              localStorage.setItem("selectedTab", tabValue);
+
+
+
+          }
+      })
+
+
+    </script>
+  </body>
+</html>
+

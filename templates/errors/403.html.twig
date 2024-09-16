@@ -1,0 +1,84 @@
+<style>
+body {
+  font-family: fantasy;
+}
+
+.four-zero-three {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+.four-zero-three__inner {
+  padding: 20px;
+}
+.four-zero-three__title {
+  color: #000;
+  font-size: 5rem;
+}
+
+.button-58 {
+  align-items: center;
+  background-color: #e41919;
+  border:none !important;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+@media (max-width: 600px) {
+  .four-zero-three__title {
+    font-size: 4rem;
+  }
+}
+.four-zero-three__desc {
+  color: #e41919;
+  font-size: 2.5rem;
+}
+@media (max-width: 600px) {
+  .four-zero-three__desc {
+    font-size: 2rem;
+  }
+}
+.four-zero-three__content {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 600px) {
+  .four-zero-three__content {
+    font-size: 1rem;
+  }
+}
+
+</style>
+
+
+<div class="four-zero-three">
+  <div class="four-zero-three__inner">
+    <div class="four-zero-three__title">403</div>
+    <div class="four-zero-three__desc">Accès refusé</div>
+    <div class="four-zero-three__content">Désolé, mais vous n'êtes pas autorisé à accéder à cette page</div>
+    <button class="button-58" role="button" onclick="history.back()">Revenir à la page précédente</button>
+
+  </div>
+
+</div>
+
